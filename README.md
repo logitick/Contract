@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/logitick/Contract.svg?branch=master)](https://travis-ci.org/logitick/Contract)
 # Contract
 
 A library to assist with Design By Contract.
