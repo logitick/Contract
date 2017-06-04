@@ -1,0 +1,9 @@
+build
+
+# Created by https://www.gitignore.io/api/composer
+
+### Composer ###
+composer.phar
+/vendor/
+
+# End of https://www.gitignore.io/api/composer
