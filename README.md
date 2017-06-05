@@ -20,5 +20,20 @@ public function intDivision($a, $b) {
         ->withMessage('Cannot divide by zero');
     ...
 }
+```
 
+### Enumerate allowed values
+```php
+public function setStatus($status) {
+    Contract::isAnyOf('ACTIVE', 'DISABLED', 'NEEDS_CONFIRMATION');
+    ...
+}
+```
+
+### Nullables
+```php
+public function setTotal($total) {
+    Contract::isNullableDouble($total)->greaterThan(0);
+    ...
+}
 ```
