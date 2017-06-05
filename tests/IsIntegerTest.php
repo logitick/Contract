@@ -23,6 +23,27 @@ class IsIntegerTest extends \PHPUnit_Framework_TestCase {
 
     public function testIsIntegerCheckOnDouble() {
         $contract = new IsInteger(1.2);
+	$this->assertFalse($contract->check());
+    }
+
+    public function testIsIntegerMeetsContract() {
+        $contract = new IsInteger(12);
+	$this->assertTrue($contract->meetsContract());
+    }
+
+    /**
+     * @expectedException \Logitick\Contract\ContractNotMetException
+     */
+    public function testIsIntegerFailsOnString() {
+        $contract = new IsInteger('123');
+	$this->assertfalse($contract->meetsContract());
+    }
+
+    /**
+     * @expectedException \Logitick\Contract\ContractNotMetException
+     */
+    public function testIsIntegerFailsOnDouble() {
+        $contract = new IsInteger(1.2);
 	$this->assertFalse($contract->meetsContract());
     }
 

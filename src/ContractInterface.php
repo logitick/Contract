@@ -21,4 +21,5 @@ interface ContractInterface {
     
     public function getIdentifier();
     public function getMessage();
+    public function withMessage($message);
 }
