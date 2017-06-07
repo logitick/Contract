@@ -19,7 +19,13 @@ interface ContractInterface {
      */
     public function check();
     
-    public function getIdentifier();
     public function getMessage();
+
+    /**
+     * Set the exception message on fail
+     *
+     * @param string $message
+     * @return \Logitick\Contract\ContractInterface returns the current object to allow chaining
+     */
     public function withMessage($message);
 }

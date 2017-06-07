@@ -3,20 +3,29 @@
 namespace Logitick\Contract\Type\Numeric;
 
 use Logitick\Contract\DecoratorContract;
+use Logitick\Contract\ComparisonContractDecorator;
 use Logitick\Contract\ContractInterface;
+use Logitick\Contract\ContractNotMetException;
 
-class IsGreaterThan implements ContractInterface {
 
-    use DecoratorContract;
+/**
+ * IsGreaterThan(5, 9) reads is 5 GreaterThan 9
+ */
+class IsGreaterThan extends ComparisonContractDecorator {
+
     /**
      * determines if the value meets the contract requirement
      *
      * @return boolean
      */
     public function meetsContract() {
-        return false;
+        if (!$this->check()) {
+            throw new ContractNotMetException($this->baseContract->getMessage());
+        }
+        return true;
     }
-    
+
+
     /**
      * Checks if the contract has been met. Will throw an exception if otherwise.
      *
@@ -24,12 +33,15 @@ class IsGreaterThan implements ContractInterface {
      * @throws \Logitick\Contract\ContractNotMetException
      */
     public function check() {
+        return $this->baseContract->check() && $this->value > $this->value2;
     }
     
-    public function getIdentifier() {
-
-    }
     public function getMessage() {
+        return $this->message;
+    }
 
+    public function withMessage($message) {
+        $this->baseContract->withMessage($message);
+        return $this;
     }
 }

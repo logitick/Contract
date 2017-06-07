@@ -8,9 +8,11 @@ use Webmozart\Assert\Assert;
 
 class IsInteger implements ContractInterface {
 
+    use Numeric;
+
     private $value;
 
-    private $message = "Invalid value";
+    private $message = "Invalid value. An integer is required.";
 
     function __construct($val) {
         $this->value = $val;
@@ -23,7 +25,7 @@ class IsInteger implements ContractInterface {
      */
     public function meetsContract() {
         if (!$this->check()) {
-            throw new ContractNotMetException();
+            throw new ContractNotMetException($this->message);
         }
         return true;
     }
@@ -38,14 +40,12 @@ class IsInteger implements ContractInterface {
         return is_int($this->value);
     }
     
-    public function getIdentifier() {
-
-    }
     public function getMessage() {
         return $this->message;
     }
 
     public function withMessage($message) {
         $this->message = $message;
+        return $this;
     }
 }

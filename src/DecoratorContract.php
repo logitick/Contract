@@ -2,14 +2,17 @@
 
 namespace Logitick\Contract;
 
-trait DecoratorContract {
+abstract class DecoratorContract {
 
     /**
      * @var ContractInterface
      */
-    private $baseContract;
+    protected $baseContract;
 
-    public function __construct(ContractInterface $contract) {
+    protected $value;
+
+    public function __construct($val, ContractInterface $contract) {
+        $this->value = $val;
         $this->baseContract = $contract;
     }
 }

@@ -3,10 +3,11 @@
 namespace Logitick\Contract\Type;
 
 use Logitick\Contract\ContractInterface;
+use Logitick\Contract\Type\Numeric\IsGreaterThan;
 
 trait Numeric {
 
-    public function isGreaterThan($val) {
-
+    public function greaterThan($val) {
+        return new IsGreaterThan($this->value, $val, $this);
     }
 }
